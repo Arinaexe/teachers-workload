@@ -71,6 +71,26 @@
     </div>
 
     <div id="teacher-view" class="hidden">
+      <h2>Добавить занятие</h2>
+      <div class="panel">
+        <form id="add-lesson-form" class="add-lesson-form">
+          <div>
+            <label>Ученик</label>
+            <input id="add-student" type="text" required>
+          </div>
+          <div>
+            <label>Дата</label>
+            <input id="add-date" type="date" required>
+          </div>
+          <div>
+            <label>Время</label>
+            <input id="add-time" type="time">
+          </div>
+          <button type="submit">Добавить</button>
+        </form>
+        <div class="error" id="add-lesson-error"></div>
+      </div>
+
       <h2>Ваши занятия</h2>
       <div class="panel">
         <div id="lessons-list" class="loading">Загрузка…</div>

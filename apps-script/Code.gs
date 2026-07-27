@@ -40,6 +40,7 @@ function handle_(e) {
     var out;
     if (action === 'login') out = login_(params.name, params.pin);
     else if (action === 'list') out = listLessons_(auth_(params.token));
+    else if (action === 'addLesson') out = addLesson_(auth_(params.token), params.student, params.date, params.time);
     else if (action === 'toggle') out = toggleStatus_(auth_(params.token), params.rowId, params.status);
     else if (action === 'setLessonComment') out = setLessonComment_(auth_(params.token), params.rowId, params.comment);
     else if (action === 'setTeacherComment') out = setTeacherComment_(auth_(params.token), params.teacher, params.comment);
@@ -115,6 +116,23 @@ function listLessons_(user) {
     out.push(rowToLesson_(rows[i], i + 1));
   }
   return out;
+}
+
+// Учитель добавляет своё занятие сам — имя учителя берётся из токена, не из параметра
+// (чтобы нельзя было записать занятие от имени другого учителя).
+function addLesson_(user, student, date, time) {
+  student = String(student || '').trim();
+  date = String(date || '').trim();
+  time = String(time || '').trim();
+  if (!student) throw new Error('Укажи имя ученика');
+  if (!date) throw new Error('Укажи дату');
+
+  var sheet = SpreadsheetApp.getActive().getSheetByName(TAB_LESSONS);
+  var newRow = sheet.getLastRow() + 1;
+  var id = newRow - 1;
+  var now = new Date();
+  sheet.getRange(newRow, 1, 1, 8).setValues([[id, user.name, student, date, time, 'Запланировано', '', now]]);
+  return rowToLesson_([id, user.name, student, date, time, 'Запланировано', '', now], newRow);
 }
 
 function rowToLesson_(row, rowIndex) {

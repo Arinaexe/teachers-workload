@@ -75,6 +75,30 @@ el('logout-btn').addEventListener('click', function () {
   showLogin();
 });
 
+// ---- добавление занятия (учитель) ----
+el('add-lesson-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var session = getSession();
+  if (!session) return;
+  var student = el('add-student').value.trim();
+  var date = el('add-date').value;
+  var time = el('add-time').value;
+  el('add-lesson-error').textContent = '';
+  apiPost('addLesson', { token: session.token, student: student, date: date, time: time }).then(function (res) {
+    if (!res.ok) {
+      if (res.error === 'Нет доступа: войдите заново' || res.error === 'Сессия истекла, войдите заново') return handleAuthError(res);
+      el('add-lesson-error').textContent = res.error;
+      return;
+    }
+    el('add-student').value = '';
+    el('add-date').value = '';
+    el('add-time').value = '';
+    loadTeacher(session);
+  }).catch(function () {
+    el('add-lesson-error').textContent = 'Не удалось связаться с сервером. Попробуйте снова.';
+  });
+});
+
 // ---- вид учителя ----
 function loadTeacher(session) {
   var box = el('lessons-list');

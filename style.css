@@ -114,6 +114,17 @@ button.secondary.active { background: var(--accent); color: #fff; border-color: 
 
 #login-form button { margin-top: 20px; width: 100%; }
 
+/* --- add lesson form --- */
+.add-lesson-form {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.add-lesson-form > div { flex: 1; min-width: 140px; }
+.add-lesson-form label { margin: 0 0 6px; }
+.add-lesson-form button { flex-shrink: 0; }
+
 /* --- top bar --- */
 .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
 .who { font-size: 13px; color: var(--text-dim); }
