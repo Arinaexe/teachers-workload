@@ -229,11 +229,12 @@ function renderSummary(summary, session) {
     var tr = document.createElement('tr');
     if (overload) tr.className = 'overload';
     tr.innerHTML =
-      '<td>' + escapeHtml(t.teacher) + (overload ? ' ⚠' : '') + '</td>' +
-      '<td class="count">' + t.done + '</td>' +
-      '<td class="count">' + t.planned + '</td>' +
-      '<td class="count">' + t.cancelled + '</td>';
+      '<td data-label="Учитель">' + escapeHtml(t.teacher) + (overload ? ' ⚠' : '') + '</td>' +
+      '<td data-label="Проведено" class="count">' + t.done + '</td>' +
+      '<td data-label="Запланировано" class="count">' + t.planned + '</td>' +
+      '<td data-label="Отменено" class="count">' + t.cancelled + '</td>';
     var commentTd = document.createElement('td');
+    commentTd.setAttribute('data-label', 'Комментарий');
     var input = document.createElement('input');
     input.type = 'text';
     input.className = 'comment-input';

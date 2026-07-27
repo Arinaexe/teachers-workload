@@ -259,8 +259,6 @@ tr.overload td { color: var(--warn); }
 
 .toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
 
-#summary-table { overflow-x: auto; }
-#summary-table table { min-width: 560px; }
 
 .loading { text-align: center; color: var(--text-dim); padding: 40px 0; }
 
@@ -289,4 +287,40 @@ tr.overload td { color: var(--warn); }
   }
 
   .lesson-actions button { flex: 1 1 auto; }
+
+  /* таблица "Нагрузка по учителям" -> карточки, никакого горизонтального скролла */
+  #summary-table table,
+  #summary-table thead,
+  #summary-table tbody,
+  #summary-table tr,
+  #summary-table td {
+    display: block;
+    width: 100%;
+  }
+  #summary-table thead { display: none; }
+  #summary-table tr {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+  }
+  #summary-table tr:last-child { margin-bottom: 0; }
+  #summary-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+  }
+  #summary-table td:last-child { border-bottom: none; }
+  #summary-table td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text-dim);
+  }
+  #summary-table td .comment-input { width: auto; flex: 1 1 auto; }
 }
