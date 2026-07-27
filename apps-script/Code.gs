@@ -141,7 +141,7 @@ function rowToLesson_(row, rowIndex) {
     teacher: row[1],
     student: row[2],
     date: formatDate_(row[3]),
-    time: row[4],
+    time: formatTime_(row[4]),
     status: row[5],
     comment: row[6]
   };
@@ -150,6 +150,15 @@ function rowToLesson_(row, rowIndex) {
 function formatDate_(v) {
   if (Object.prototype.toString.call(v) === '[object Date]') {
     return Utilities.formatDate(v, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  }
+  return v;
+}
+
+// Google Sheets сам распознаёт строку "19:00" как время и хранит её как Date —
+// при чтении такая ячейка возвращается объектом Date, а не строкой. Форматируем обратно в HH:mm.
+function formatTime_(v) {
+  if (Object.prototype.toString.call(v) === '[object Date]') {
+    return Utilities.formatDate(v, Session.getScriptTimeZone(), 'HH:mm');
   }
   return v;
 }
