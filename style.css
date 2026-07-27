@@ -49,6 +49,23 @@ body {
 .cat-full-1 { width: 150px; bottom: 30px; left: 48px; }
 .cat-full-2 { width: 130px; bottom: 90px; right: 60px; transform: scaleX(-1); }
 
+.phrase {
+  position: absolute;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.4;
+  text-transform: lowercase;
+  text-align: center;
+  width: 130px;
+  color: var(--heading);
+  opacity: 0.4;
+}
+.phrase-1 { top: 210px; left: 20px; transform: rotate(-7deg); }
+.phrase-2 { top: 300px; right: 8px; transform: rotate(6deg); color: var(--accent); }
+.phrase-3 { bottom: 280px; left: 10px; transform: rotate(5deg); color: var(--accent); }
+.phrase-4 { top: 400px; right: 24px; transform: rotate(-5deg); }
+
 @media (max-width: 1180px) {
   .cat-decor { display: none; }
 }
