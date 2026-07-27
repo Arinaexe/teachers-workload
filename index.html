@@ -1,0 +1,51 @@
+<meta charset="utf-8">
+<title>Нагрузка учителей</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+
+<div class="wrap">
+
+  <section id="login-screen">
+    <h1>Нагрузка учителей</h1>
+    <div class="sub">Войдите, чтобы отметить занятия</div>
+    <div class="panel">
+      <form id="login-form">
+        <label>Имя</label>
+        <input id="login-name" type="text" autocomplete="username" required>
+        <label>PIN</label>
+        <input id="login-pin" type="password" inputmode="numeric" autocomplete="current-password" required>
+        <button type="submit">Войти</button>
+        <div class="error" id="login-error"></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="app-screen" class="hidden">
+    <div class="topbar">
+      <div class="who">Вы вошли как <b id="who-name"></b></div>
+      <button class="secondary" id="logout-btn">Выйти</button>
+    </div>
+
+    <div id="teacher-view" class="hidden">
+      <h2>Ваши занятия</h2>
+      <div class="panel">
+        <div id="lessons-list" class="loading">Загрузка…</div>
+      </div>
+    </div>
+
+    <div id="admin-view" class="hidden">
+      <h2>Нагрузка по учителям</h2>
+      <div class="panel">
+        <div id="summary-table" class="loading">Загрузка…</div>
+      </div>
+      <h2>Все занятия</h2>
+      <div class="panel">
+        <div class="toolbar" id="admin-filters"></div>
+        <div id="all-lessons" class="loading">Загрузка…</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="app.js"></script>
