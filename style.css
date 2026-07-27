@@ -35,36 +35,48 @@ body {
   padding: 32px 20px 80px;
 }
 
-/* --- декоративные котики --- */
+/* --- декоративные котики, уточки и фразы: разбросаны по всей высоте страницы --- */
 .cat-decor {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
 }
-.cat { position: absolute; color: var(--accent); opacity: 0.16; }
-.cat-face-1 { width: 100px; top: 60px; left: 32px; }
-.cat-face-2 { width: 80px; top: 140px; right: 40px; }
-.cat-full-1 { width: 150px; bottom: 30px; left: 48px; }
-.cat-full-2 { width: 130px; bottom: 90px; right: 60px; transform: scaleX(-1); }
+.deco { position: absolute; color: var(--accent); opacity: 0.18; }
+.cat-face { width: 110px; }
+.cat-full { width: 160px; }
+.duck { width: 130px; }
+
+.pos-1 { top: 50px; left: 28px; }
+.pos-2 { top: 150px; right: 36px; }
+.pos-3 { top: 430px; left: 20px; }
+.pos-4 { top: 600px; left: 44px; }
+.pos-5 { top: 800px; right: 40px; transform: scaleX(-1); }
+.pos-6 { top: 1120px; left: 30px; }
+.pos-7 { top: 480px; right: 30px; }
+.pos-8 { top: 950px; left: 40px; transform: scaleX(-1); }
+.pos-9 { top: 1300px; right: 50px; }
 
 .phrase {
   position: absolute;
   font-family: 'Unbounded', sans-serif;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 18px;
   line-height: 1.4;
   text-transform: lowercase;
   text-align: center;
-  width: 130px;
+  width: 150px;
   color: var(--heading);
-  opacity: 0.4;
+  opacity: 0.45;
 }
-.phrase-1 { top: 210px; left: 20px; transform: rotate(-7deg); }
-.phrase-2 { top: 300px; right: 8px; transform: rotate(6deg); color: var(--accent); }
-.phrase-3 { bottom: 280px; left: 10px; transform: rotate(5deg); color: var(--accent); }
-.phrase-4 { top: 400px; right: 24px; transform: rotate(-5deg); }
+.phrase-1 { top: 260px; left: 12px; transform: rotate(-7deg); font-size: 16px; }
+.phrase-2 { top: 340px; right: 4px; transform: rotate(6deg); color: var(--accent); }
+.phrase-3 { top: 620px; right: 10px; transform: rotate(5deg); color: var(--accent); font-size: 20px; }
+.phrase-4 { top: 780px; left: 8px; transform: rotate(-5deg); }
+.phrase-5 { top: 980px; right: 18px; transform: rotate(-6deg); font-size: 16px; }
+.phrase-6 { top: 1150px; left: 4px; transform: rotate(4deg); color: var(--accent); }
+.phrase-7 { top: 1320px; right: 6px; transform: rotate(-4deg); font-size: 20px; }
+.phrase-8 { top: 1480px; left: 14px; transform: rotate(6deg); color: var(--accent); }
 
 @media (max-width: 1180px) {
   .cat-decor { display: none; }
