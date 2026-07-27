@@ -97,6 +97,9 @@ function renderLessons(box, lessons, session, isAdmin) {
     return (a.date + a.time).localeCompare(b.date + b.time);
   });
   lessons.forEach(function (lesson) {
+    var item = document.createElement('div');
+    item.className = 'lesson-item';
+
     var row = document.createElement('div');
     row.className = 'lesson';
     var studentOrTeacher = isAdmin ? lesson.teacher + ' → ' + lesson.student : lesson.student;
@@ -121,7 +124,34 @@ function renderLessons(box, lessons, session, isAdmin) {
       }
     }
     row.appendChild(actionCell);
-    box.appendChild(row);
+    item.appendChild(row);
+
+    if (isAdmin) {
+      if (lesson.comment) {
+        var viewComment = document.createElement('div');
+        viewComment.className = 'comment-view';
+        viewComment.textContent = lesson.comment;
+        item.appendChild(viewComment);
+      }
+    } else {
+      var commentInput = document.createElement('input');
+      commentInput.type = 'text';
+      commentInput.className = 'comment-input';
+      commentInput.placeholder = 'Заметка к занятию (время, о чём договорились...)';
+      commentInput.value = lesson.comment || '';
+      commentInput.addEventListener('change', function () {
+        saveLessonComment(lesson.rowId, commentInput.value, session);
+      });
+      item.appendChild(commentInput);
+    }
+
+    box.appendChild(item);
+  });
+}
+
+function saveLessonComment(rowId, comment, session) {
+  apiPost('setLessonComment', { token: session.token, rowId: rowId, comment: comment }).then(function (res) {
+    if (!res.ok) handleAuthError(res);
   });
 }
 
@@ -142,27 +172,47 @@ function loadAdmin(session) {
   el('all-lessons').textContent = 'Загрузка…';
   apiGet('admin', { token: session.token }).then(function (res) {
     if (!res.ok) { return handleAuthError(res); }
-    renderSummary(res.data.summary);
+    renderSummary(res.data.summary, session);
     renderFilters(session);
     renderAllLessons(res.data.lessons, session);
   });
 }
 
-function renderSummary(summary) {
+function renderSummary(summary, session) {
   var box = el('summary-table');
   box.className = '';
   if (!summary.length) { box.innerHTML = '<div class="empty">Пока нет данных</div>'; return; }
   summary.sort(function (a, b) { return b.planned - a.planned; });
-  var rows = summary.map(function (t) {
+  box.innerHTML = '';
+  var table = document.createElement('table');
+  table.innerHTML = '<thead><tr><th>Учитель</th><th>Проведено</th><th>Запланировано</th><th>Отменено</th><th>Комментарий (видишь только ты)</th></tr></thead>';
+  var tbody = document.createElement('tbody');
+  summary.forEach(function (t) {
     var overload = t.planned >= OVERLOAD_THRESHOLD;
-    return '<tr class="' + (overload ? 'overload' : '') + '">' +
+    var tr = document.createElement('tr');
+    if (overload) tr.className = 'overload';
+    tr.innerHTML =
       '<td>' + escapeHtml(t.teacher) + (overload ? ' ⚠' : '') + '</td>' +
       '<td class="count">' + t.done + '</td>' +
       '<td class="count">' + t.planned + '</td>' +
-      '<td class="count">' + t.cancelled + '</td>' +
-      '</tr>';
-  }).join('');
-  box.innerHTML = '<table><thead><tr><th>Учитель</th><th>Проведено</th><th>Запланировано</th><th>Отменено</th></tr></thead><tbody>' + rows + '</tbody></table>';
+      '<td class="count">' + t.cancelled + '</td>';
+    var commentTd = document.createElement('td');
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'comment-input';
+    input.placeholder = 'Заметка об учителе...';
+    input.value = t.comment || '';
+    input.addEventListener('change', function () {
+      apiPost('setTeacherComment', { token: session.token, teacher: t.teacher, comment: input.value }).then(function (res) {
+        if (!res.ok) handleAuthError(res);
+      });
+    });
+    commentTd.appendChild(input);
+    tr.appendChild(commentTd);
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  box.appendChild(table);
 }
 
 function renderFilters(session) {

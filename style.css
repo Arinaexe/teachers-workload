@@ -94,19 +94,36 @@ button.secondary { background: transparent; border: 1px solid var(--border); col
 .who b { color: var(--text); }
 
 /* --- lesson list --- */
+.lesson-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.lesson-item:last-child { border-bottom: none; }
+
 .lesson {
   display: grid;
   grid-template-columns: 90px 1fr auto auto;
   gap: 14px;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
   font-size: 14px;
 }
-.lesson:last-child { border-bottom: none; }
 .lesson .date { color: var(--text-dim); font-size: 13px; }
 .lesson .student { font-weight: 700; }
 .lesson .time { color: var(--text-dim); font-size: 13px; }
+
+.comment-input {
+  font-size: 13px;
+  padding: 7px 10px;
+  width: 100%;
+}
+.lesson-item .comment-input { margin-top: 8px; }
+td .comment-input { min-width: 160px; }
+.comment-view {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+  font-style: italic;
+}
 
 .badge {
   display: inline-block;

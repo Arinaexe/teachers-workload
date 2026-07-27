@@ -41,6 +41,8 @@ function handle_(e) {
     if (action === 'login') out = login_(params.name, params.pin);
     else if (action === 'list') out = listLessons_(auth_(params.token));
     else if (action === 'toggle') out = toggleStatus_(auth_(params.token), params.rowId, params.status);
+    else if (action === 'setLessonComment') out = setLessonComment_(auth_(params.token), params.rowId, params.comment);
+    else if (action === 'setTeacherComment') out = setTeacherComment_(auth_(params.token), params.teacher, params.comment);
     else if (action === 'admin') out = adminSummary_(auth_(params.token));
     else throw new Error('Неизвестное действие: ' + action);
     return json_({ ok: true, data: out });
@@ -149,18 +151,56 @@ function toggleStatus_(user, rowId, newStatus) {
   return { rowId: rowId, status: newStatus };
 }
 
+function setLessonComment_(user, rowId, comment) {
+  rowId = Number(rowId);
+  var sheet = SpreadsheetApp.getActive().getSheetByName(TAB_LESSONS);
+  var teacherCell = sheet.getRange(rowId, 2).getValue();
+  if (!teacherCell) throw new Error('Занятие не найдено');
+  if (user.role !== 'admin' && String(teacherCell).trim() !== user.name) {
+    throw new Error('Это не ваше занятие');
+  }
+  comment = String(comment || '').slice(0, 500);
+  sheet.getRange(rowId, 7).setValue(comment);
+  sheet.getRange(rowId, 8).setValue(new Date());
+  return { rowId: rowId, comment: comment };
+}
+
+// Комментарий админа к учителю (видит и правит только админ, не сам учитель).
+function setTeacherComment_(user, teacherName, comment) {
+  if (user.role !== 'admin') throw new Error('Только для админа');
+  teacherName = String(teacherName || '').trim();
+  comment = String(comment || '').slice(0, 500);
+  var sheet = SpreadsheetApp.getActive().getSheetByName(TAB_TEACHERS);
+  var rows = sheet.getDataRange().getValues();
+  for (var i = 1; i < rows.length; i++) {
+    if (String(rows[i][0] || '').trim() === teacherName) {
+      sheet.getRange(i + 1, 5).setValue(comment);
+      return { teacher: teacherName, comment: comment };
+    }
+  }
+  throw new Error('Учитель не найден');
+}
+
 function adminSummary_(user) {
   if (user.role !== 'admin') throw new Error('Только для админа');
+
+  var teacherRows = SpreadsheetApp.getActive().getSheetByName(TAB_TEACHERS).getDataRange().getValues();
+  var byTeacher = {};
+  for (var t = 1; t < teacherRows.length; t++) {
+    var tName = String(teacherRows[t][0] || '').trim();
+    if (!tName) continue;
+    byTeacher[tName] = { teacher: tName, planned: 0, done: 0, cancelled: 0, comment: teacherRows[t][4] || '' };
+  }
+
   var sheet = SpreadsheetApp.getActive().getSheetByName(TAB_LESSONS);
   var rows = sheet.getDataRange().getValues();
-  var byTeacher = {};
   var lessons = [];
   for (var i = 1; i < rows.length; i++) {
     var teacher = String(rows[i][1] || '').trim();
     if (!teacher) continue;
     var lesson = rowToLesson_(rows[i], i + 1);
     lessons.push(lesson);
-    if (!byTeacher[teacher]) byTeacher[teacher] = { teacher: teacher, planned: 0, done: 0, cancelled: 0 };
+    if (!byTeacher[teacher]) byTeacher[teacher] = { teacher: teacher, planned: 0, done: 0, cancelled: 0, comment: '' };
     if (lesson.status === 'Проведено') byTeacher[teacher].done++;
     else if (lesson.status === 'Отменено') byTeacher[teacher].cancelled++;
     else byTeacher[teacher].planned++;
