@@ -1,5 +1,4 @@
-// ЗАПОЛНИ после деплоя Apps Script (см. README.md, шаг 4):
-var API_URL = 'ВСТАВЬ_СЮДА_URL_APPS_SCRIPT_ПОСЛЕ_ДЕПЛОЯ';
+var API_URL = 'https://script.google.com/macros/s/AKfycbxVcHLhVvfB8o-lws8-Ze9KORFctZevDR-vVkmsKLfQN8p6Qfkfo6UN-SZ_7VmvhHrjSg/exec';
 
 var STATUS_LABEL = {
   'Запланировано': 'план',
@@ -29,12 +28,9 @@ function apiGet(action, extra) {
 }
 
 function apiPost(action, extra) {
-  var params = Object.assign({ action: action }, extra || {});
-  return fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(params)
-  }).then(function (r) { return r.json(); });
+  // Apps Script отвечает 302-редиректом на script.googleusercontent.com — при follow браузер
+  // на POST теряет тело запроса. Поэтому все действия идут через GET с query-параметрами.
+  return apiGet(action, extra);
 }
 
 function el(id) { return document.getElementById(id); }

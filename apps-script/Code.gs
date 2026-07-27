@@ -82,7 +82,9 @@ function login_(name, pin) {
 function makeToken_(name, role) {
   var expires = Date.now() + TOKEN_TTL_DAYS * 24 * 60 * 60 * 1000;
   var payload = JSON.stringify({ n: name, r: role, e: expires });
-  var payloadB64 = Utilities.base64EncodeWebSafe(payload);
+  // base64EncodeWebSafe(string) mangles non-ASCII (кириллица) — encode via UTF-8 bytes instead.
+  var payloadBytes = Utilities.newBlob(payload).getBytes();
+  var payloadB64 = Utilities.base64EncodeWebSafe(payloadBytes);
   var sig = Utilities.computeHmacSha256Signature(payloadB64, getSecret_());
   var sigB64 = Utilities.base64EncodeWebSafe(sig);
   return payloadB64 + '.' + sigB64;
