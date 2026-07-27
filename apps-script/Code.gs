@@ -131,6 +131,9 @@ function addLesson_(user, student, date, time) {
   var newRow = sheet.getLastRow() + 1;
   var id = newRow - 1;
   var now = new Date();
+  // Время — как текст (иначе Sheets сам превращает "20:00" в служебную дату 1899 года,
+  // и обратное форматирование по часовому поясу может съехать на много часов).
+  sheet.getRange(newRow, 5).setNumberFormat('@');
   sheet.getRange(newRow, 1, 1, 8).setValues([[id, user.name, student, date, time, 'Запланировано', '', now]]);
   return rowToLesson_([id, user.name, student, date, time, 'Запланировано', '', now], newRow);
 }

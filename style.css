@@ -92,6 +92,27 @@ body {
   .cat-decor { display: none; }
 }
 
+/* декор по центру страницы — сверху и снизу контента, не поверх панелей */
+.center-decor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 0 28px;
+  color: var(--accent);
+  opacity: 0.4;
+}
+.center-decor .mini-icon { width: 40px; height: 40px; flex-shrink: 0; }
+.center-decor .mini-phrase {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: lowercase;
+  color: var(--heading);
+}
+.center-decor:last-child { margin: 28px 0 0; }
+
 h1, h2, h3 {
   font-family: 'Unbounded', sans-serif;
   font-weight: 700;
@@ -175,6 +196,13 @@ button.secondary.active { background: var(--accent); color: #fff; border-color: 
   border-bottom: 1px solid var(--border);
 }
 .lesson-item:last-child { border-bottom: none; }
+
+.lesson-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.lesson-actions button { font-size: 12px; padding: 9px 14px; }
 
 .lesson {
   display: grid;

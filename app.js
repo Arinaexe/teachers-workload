@@ -133,18 +133,31 @@ function renderLessons(box, lessons, session, isAdmin) {
       '<span class="badge ' + STATUS_CLASS[lesson.status] + '">' + STATUS_LABEL[lesson.status] + '</span>';
 
     var actionCell = document.createElement('div');
+    actionCell.className = 'lesson-actions';
     if (!isAdmin) {
       if (lesson.status === 'Запланировано') {
         var doneBtn = document.createElement('button');
         doneBtn.textContent = 'Отметить проведённым';
         doneBtn.addEventListener('click', function () { toggle(lesson.rowId, 'Проведено', session); });
         actionCell.appendChild(doneBtn);
+
+        var cancelBtn = document.createElement('button');
+        cancelBtn.className = 'secondary';
+        cancelBtn.textContent = 'Отменено';
+        cancelBtn.addEventListener('click', function () { toggle(lesson.rowId, 'Отменено', session); });
+        actionCell.appendChild(cancelBtn);
       } else if (lesson.status === 'Проведено') {
         var undoBtn = document.createElement('button');
         undoBtn.className = 'secondary';
         undoBtn.textContent = 'Отменить отметку';
         undoBtn.addEventListener('click', function () { toggle(lesson.rowId, 'Запланировано', session); });
         actionCell.appendChild(undoBtn);
+      } else if (lesson.status === 'Отменено') {
+        var restoreBtn = document.createElement('button');
+        restoreBtn.className = 'secondary';
+        restoreBtn.textContent = 'Вернуть в план';
+        restoreBtn.addEventListener('click', function () { toggle(lesson.rowId, 'Запланировано', session); });
+        actionCell.appendChild(restoreBtn);
       }
     }
     row.appendChild(actionCell);
