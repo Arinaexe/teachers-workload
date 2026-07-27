@@ -2,7 +2,7 @@
 
 :root {
   --bg: #fdf4f6;
-  --panel: #ffffff;
+  --panel: rgba(255, 255, 255, 0.86);
   --panel-2: #fbedf1;
   --border: #f2d9e1;
   --accent: #e0728f;
@@ -62,6 +62,12 @@ body {
 .pos-11 { top: 720px;  right: 20px; }
 .pos-10 { top: 940px;  right: 12px; }
 
+/* по центру страницы — под панелями, просвечивают сквозь них */
+.pos-c1 { top: 190px; left: 50%; transform: translateX(-300px); opacity: 0.28; }
+.pos-c2 { top: 210px; left: 50%; transform: translateX(200px); opacity: 0.28; }
+.pos-c3 { top: 560px; left: 50%; transform: translateX(260px); opacity: 0.26; }
+.pos-c4 { top: 820px; left: 50%; transform: translateX(-220px); opacity: 0.28; }
+
 .phrase {
   position: absolute;
   font-family: 'Unbounded', sans-serif;
@@ -87,6 +93,10 @@ body {
 .phrase-5 { top: 610px; right: 14px; transform: rotate(-6deg); font-size: 16px; }
 .phrase-7 { top: 840px; right: 4px;  transform: rotate(-4deg); font-size: 20px; }
 .phrase-10 { top: 1050px; right: 10px; transform: rotate(5deg); }
+
+/* по центру страницы */
+.phrase-c1 { top: 420px; left: 50%; transform: translateX(-340px) rotate(-4deg); opacity: 0.3; }
+.phrase-c2 { top: 700px; left: 50%; transform: translateX(280px) rotate(4deg); opacity: 0.3; color: var(--accent); }
 
 @media (max-width: 1180px) {
   .cat-decor { display: none; }
@@ -126,11 +136,15 @@ h2 { font-size: 16px; color: var(--heading); }
 
 .panel {
   background: var(--panel);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 24px;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* --- login --- */
