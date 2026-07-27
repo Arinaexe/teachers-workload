@@ -257,8 +257,36 @@ th { color: var(--text-dim); font-weight: 400; font-size: 12px; text-transform: 
 tr.overload td { color: var(--warn); }
 .count { font-family: 'Unbounded', sans-serif; font-size: 15px; }
 
-.toolbar { display: flex; gap: 10px; margin-bottom: 16px; }
+.toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+
+#summary-table { overflow-x: auto; }
+#summary-table table { min-width: 560px; }
 
 .loading { text-align: center; color: var(--text-dim); padding: 40px 0; }
 
 .hidden { display: none !important; }
+
+/* --- телефон / узкий экран --- */
+@media (max-width: 640px) {
+  .wrap { padding: 20px 14px 60px; }
+  .panel { padding: 16px; }
+
+  #login-screen { margin-top: 40px; }
+
+  input, .comment-input { font-size: 16px; }
+
+  .topbar { flex-wrap: wrap; gap: 10px; }
+
+  .add-lesson-form { gap: 10px; }
+  .add-lesson-form > div { flex: 1 1 100%; min-width: 0; }
+  .add-lesson-form button { width: 100%; }
+
+  .lesson {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .lesson-actions button { flex: 1 1 auto; }
+}
