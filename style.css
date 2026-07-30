@@ -42,10 +42,26 @@ body {
   z-index: 0;
   pointer-events: none;
 }
-.deco { position: absolute; color: var(--accent); opacity: 0.18; }
+.deco {
+  position: absolute;
+  color: var(--accent);
+  opacity: 0.18;
+  --flip: 1;
+  animation: float 6s ease-in-out infinite;
+}
 .cat-face { width: 105px; }
 .cat-full { width: 150px; }
 .duck { width: 100px; }
+
+/* лёгкое покачивание фоновых котиков/уточек, со сбитым ритмом чтобы не двигались синхронно */
+.cat-decor svg.deco:nth-of-type(3n)   { animation-duration: 7s;   animation-delay: -1.5s; }
+.cat-decor svg.deco:nth-of-type(3n+1) { animation-duration: 5.5s; animation-delay: -3s; }
+.cat-decor svg.deco:nth-of-type(3n+2) { animation-duration: 6.5s; animation-delay: -0.5s; }
+
+@keyframes float {
+  0%, 100% { transform: scaleX(var(--flip)) translateY(0)     rotate(0deg); }
+  50%      { transform: scaleX(var(--flip)) translateY(-10px) rotate(2deg); }
+}
 
 /* разбросаны по всей ширине и высоте страницы (проценты — чтобы не зависеть от размера экрана) */
 .pos-1  { top: 20px;    left: 3%; }
@@ -55,11 +71,11 @@ body {
 .pos-7  { top: 300px;   left: 15%; }
 .pos-9  { top: 320px;   right: 16%; }
 .pos-3  { top: 460px;   left: 4%; }
-.pos-5  { top: 480px;   right: 6%;  transform: scaleX(-1); }
+.pos-5  { top: 480px;   right: 6%;  --flip: -1; }
 .pos-c3 { top: 560px;   left: 40%;  opacity: 0.26; }
 .pos-11 { top: 620px;   right: 30%; }
 .pos-4  { top: 700px;   left: 18%; }
-.pos-8  { top: 740px;   right: 14%; transform: scaleX(-1); }
+.pos-8  { top: 740px;   right: 14%; --flip: -1; }
 .pos-c4 { top: 860px;   left: 36%;  opacity: 0.28; }
 .pos-10 { top: 940px;   right: 4%; }
 .pos-6  { top: 1080px;  left: 6%; }
@@ -92,6 +108,10 @@ body {
 
 @media (max-width: 1180px) {
   .cat-decor { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deco, .panel, .badge { animation: none !important; }
 }
 
 /* декор по центру страницы — сверху и снизу контента, не поверх панелей */
@@ -137,6 +157,12 @@ h2 { font-size: 16px; color: var(--heading); }
   margin-bottom: 20px;
   position: relative;
   z-index: 1;
+  animation: panelIn .5s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* --- login --- */
@@ -243,6 +269,12 @@ td .comment-input { min-width: 160px; }
   border: none;
   white-space: nowrap;
   font-weight: 700;
+  animation: badgePop .3s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+@keyframes badgePop {
+  from { opacity: 0; transform: scale(.5); }
+  to   { opacity: 1; transform: scale(1); }
 }
 .badge.planned { color: #b9793a; background: #fbead2; }
 .badge.done { color: #4f9c6e; background: #e2f3e8; }
