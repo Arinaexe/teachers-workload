@@ -215,9 +215,27 @@ function loadAdmin(session) {
   });
 }
 
+function renderStats(summary) {
+  var box = el('admin-stats');
+  if (!summary.length) { box.classList.add('hidden'); return; }
+  var totalDone = 0, totalPlanned = 0, overloadCount = 0;
+  summary.forEach(function (t) {
+    totalDone += t.done;
+    totalPlanned += t.planned;
+    if (t.planned >= OVERLOAD_THRESHOLD) overloadCount++;
+  });
+  box.classList.remove('hidden');
+  box.innerHTML =
+    '<div class="stat-tile"><div class="n">' + summary.length + '</div><div class="l">учителей</div></div>' +
+    '<div class="stat-tile"><div class="n">' + totalPlanned + '</div><div class="l">запланировано</div></div>' +
+    '<div class="stat-tile ok"><div class="n">' + totalDone + '</div><div class="l">выполнено</div></div>' +
+    '<div class="stat-tile' + (overloadCount ? ' warn' : '') + '"><div class="n">' + overloadCount + '</div><div class="l">перегружены</div></div>';
+}
+
 function renderSummary(summary, session) {
   var box = el('summary-table');
   box.className = '';
+  renderStats(summary);
   if (!summary.length) { box.innerHTML = '<div class="empty">Пока нет данных</div>'; return; }
   summary.sort(function (a, b) { return b.planned - a.planned; });
   box.innerHTML = '';

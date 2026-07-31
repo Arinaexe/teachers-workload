@@ -1,226 +1,46 @@
 <meta charset="utf-8">
 <title>Дашборд</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%93%8B</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>%F0%9F%90%B1</text></svg>">
 <link rel="stylesheet" href="style.css">
 
-<div class="cat-decor" aria-hidden="true">
-  <!-- переиспользуемые шаблоны: мордочка котика, котик в полный рост, уточка -->
-
-  <svg class="deco cat-face pos-1" viewBox="0 0 100 100">
-    <path d="M24 36 Q20 12 40 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M76 36 Q80 12 60 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <circle cx="50" cy="58" r="30" fill="none" stroke="currentColor" stroke-width="2.5"/>
-    <path d="M36 54 Q40 50 44 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M56 54 Q60 50 64 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="icon-cat" viewBox="0 0 100 100">
+    <path d="M24 36 Q20 12 40 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M76 36 Q80 12 60 28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="50" cy="58" r="30" fill="none" stroke="currentColor" stroke-width="3"/>
+    <path d="M36 54 Q40 50 44 54" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M56 54 Q60 50 64 54" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
     <circle cx="33" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
     <circle cx="67" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
-    <path d="M47 62 Q50 65 53 62" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M50 65 Q46 70 41 67 M50 65 Q54 70 59 67" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M14 58 L32 60 M14 66 L32 64 M86 58 L68 60 M86 66 L68 64" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco cat-face pos-2" viewBox="0 0 100 100">
-    <path d="M26 37 Q23 15 41 29" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M74 37 Q77 15 59 29" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <circle cx="50" cy="59" r="28" fill="none" stroke="currentColor" stroke-width="2.5"/>
-    <path d="M38 55 Q41 52 44 55" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M56 55 Q59 52 62 55" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="35" cy="63" r="3" fill="currentColor" opacity="0.6"/>
-    <circle cx="65" cy="63" r="3" fill="currentColor" opacity="0.6"/>
-    <path d="M50 63 Q46 68 40 65 M50 63 Q54 68 60 65" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M44 22 Q50 15 56 22 Q56 28 50 32 Q44 28 44 22 Z" fill="currentColor" opacity="0.55"/>
-  </svg>
-
-  <svg class="deco cat-face pos-3" viewBox="0 0 100 100">
-    <path d="M24 36 Q20 12 40 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M76 36 Q80 12 60 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <circle cx="50" cy="58" r="30" fill="none" stroke="currentColor" stroke-width="2.5"/>
-    <path d="M36 54 Q40 50 44 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M56 54 Q60 50 64 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <circle cx="33" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
-    <circle cx="67" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
-    <path d="M47 62 Q50 65 53 62" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M50 65 Q46 70 41 67 M50 65 Q54 70 59 67" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M14 58 L32 60 M14 66 L32 64 M86 58 L68 60 M86 66 L68 64" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco cat-full pos-4" viewBox="0 0 120 170">
-    <path d="M92 128 Q128 118 118 76 Q112 55 96 61" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M38 158 Q18 158 18 112 Q18 68 55 58 Q92 58 92 100 Q92 142 70 158 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M40 156 L40 165 M60 158 L60 167" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="55" cy="42" r="23" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M36 30 Q32 8 52 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M74 30 Q78 8 58 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M44 41 Q47 37 50 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M60 41 Q63 37 66 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="42" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <circle cx="68" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <path d="M55 47 Q51 52 46 49 M55 47 Q59 52 64 49" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M50 9 Q47 3 44 7 Q41 11 50 17 Q59 11 56 7 Q53 3 50 9 Z" fill="currentColor" opacity="0.55"/>
-  </svg>
-
-  <svg class="deco cat-full pos-5" viewBox="0 0 120 170">
-    <path d="M92 128 Q128 118 118 76 Q112 55 96 61" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M38 158 Q18 158 18 112 Q18 68 55 58 Q92 58 92 100 Q92 142 70 158 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M40 156 L40 165 M60 158 L60 167" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="55" cy="42" r="23" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M36 30 Q32 8 52 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M74 30 Q78 8 58 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M44 41 Q47 37 50 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M60 41 Q63 37 66 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="42" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <circle cx="68" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <path d="M55 47 Q51 52 46 49 M55 47 Q59 52 64 49" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M27 62 Q17 62 17 72 Q17 80 27 80" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="24" cy="71" r="2" fill="currentColor" opacity="0.6"/>
-  </svg>
-
-  <svg class="deco cat-full pos-6" viewBox="0 0 120 170">
-    <path d="M92 128 Q128 118 118 76 Q112 55 96 61" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M38 158 Q18 158 18 112 Q18 68 55 58 Q92 58 92 100 Q92 142 70 158 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M40 156 L40 165 M60 158 L60 167" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <circle cx="55" cy="42" r="23" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M36 30 Q32 8 52 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M74 30 Q78 8 58 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M44 41 Q47 37 50 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M60 41 Q63 37 66 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="42" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <circle cx="68" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <path d="M55 47 Q51 52 46 49 M55 47 Q59 52 64 49" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M50 9 Q47 3 44 7 Q41 11 50 17 Q59 11 56 7 Q53 3 50 9 Z" fill="currentColor" opacity="0.55"/>
-  </svg>
-
-  <!-- уточки -->
-  <!-- уточка, как игрушка для ванны: круглая головка+клюв, круглое тельце, крылышко-завиток -->
-  <svg class="deco duck pos-7" viewBox="0 0 100 100">
-    <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-    <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M47 62 Q50 65 53 62" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M50 65 Q46 70 41 67 M50 65 Q54 70 59 67" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M14 58 L32 60 M14 66 L32 64 M86 58 L68 60 M86 66 L68 64" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-duck" viewBox="0 0 100 100">
+    <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3.2"/>
+    <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3.2"/>
+    <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
     <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
+  </symbol>
+</svg>
 
-  <svg class="deco duck pos-8" viewBox="0 0 100 100">
-    <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-    <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
-    <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco duck pos-9" viewBox="0 0 100 100">
-    <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-    <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
-    <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco duck pos-10" viewBox="0 0 100 100">
-    <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-    <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
-    <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco cat-face pos-11" viewBox="0 0 100 100">
-    <path d="M24 36 Q20 12 40 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M76 36 Q80 12 60 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <circle cx="50" cy="58" r="30" fill="none" stroke="currentColor" stroke-width="2.5"/>
-    <path d="M36 54 Q40 50 44 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <path d="M56 54 Q60 50 64 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <circle cx="33" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
-    <circle cx="67" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
-    <path d="M47 62 Q50 65 53 62" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M50 65 Q46 70 41 67 M50 65 Q54 70 59 67" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <path d="M14 58 L32 60 M14 66 L32 64 M86 58 L68 60 M86 66 L68 64" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-  </svg>
-
-  <!-- центральные — под панелями, просвечивают сквозь полупрозрачные карточки -->
-  <svg class="deco cat-face pos-c1" viewBox="0 0 100 100">
-    <path d="M26 37 Q23 15 41 29" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M74 37 Q77 15 59 29" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <circle cx="50" cy="59" r="28" fill="none" stroke="currentColor" stroke-width="2.5"/>
-    <path d="M38 55 Q41 52 44 55" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M56 55 Q59 52 62 55" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="35" cy="63" r="3" fill="currentColor" opacity="0.6"/>
-    <circle cx="65" cy="63" r="3" fill="currentColor" opacity="0.6"/>
-    <path d="M50 63 Q46 68 40 65 M50 63 Q54 68 60 65" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco duck pos-c2" viewBox="0 0 100 100">
-    <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-    <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
-    <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco cat-full pos-c3" viewBox="0 0 120 170">
-    <path d="M92 128 Q128 118 118 76 Q112 55 96 61" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M38 158 Q18 158 18 112 Q18 68 55 58 Q92 58 92 100 Q92 142 70 158 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-    <circle cx="55" cy="42" r="23" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M36 30 Q32 8 52 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M74 30 Q78 8 58 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M44 41 Q47 37 50 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M60 41 Q63 37 66 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="42" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <circle cx="68" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-    <path d="M55 47 Q51 52 46 49 M55 47 Q59 52 64 49" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="deco duck pos-c4" viewBox="0 0 100 100">
-    <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-    <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-    <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
-    <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-
-  <div class="phrase phrase-1">grammar nazi<br>&amp; proud of it</div>
-  <div class="phrase phrase-2">present.<br>simple.<br>perfect.</div>
-  <div class="phrase phrase-3">keep calm<br>&amp; conjugate on</div>
-  <div class="phrase phrase-4">coffee →<br>class →<br>conquer</div>
-  <div class="phrase phrase-5">you got this,<br>teach!</div>
-  <div class="phrase phrase-6">eat → sleep →<br>teach → repeat</div>
-  <div class="phrase phrase-7">not perfect,<br>just present<br>continuous</div>
-  <div class="phrase phrase-8">irregular verbs,<br>regular hero</div>
-  <div class="phrase phrase-9">teach English,<br>drink tea,<br>repeat</div>
-  <div class="phrase phrase-10">100% that<br>teacher</div>
-  <div class="phrase phrase-c1">english<br>teacher<br>vibes</div>
-  <div class="phrase phrase-c2">you're the<br>main character</div>
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-cursor" id="blob-cursor"></div>
 </div>
 
 <div class="wrap">
 
-  <div class="center-decor" aria-hidden="true">
-    <svg class="mini-icon" viewBox="0 0 100 100">
-      <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-      <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-      <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
-      <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <span class="mini-phrase">teach &amp; shine ✨</span>
-    <svg class="mini-icon" viewBox="0 0 100 100">
-      <path d="M24 36 Q20 12 40 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M76 36 Q80 12 60 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      <circle cx="50" cy="58" r="30" fill="none" stroke="currentColor" stroke-width="2.5"/>
-      <path d="M36 54 Q40 50 44 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      <path d="M56 54 Q60 50 64 54" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-      <circle cx="33" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
-      <circle cx="67" cy="63" r="3.5" fill="currentColor" opacity="0.6"/>
-      <path d="M47 62 Q50 65 53 62" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M50 65 Q46 70 41 67 M50 65 Q54 70 59 67" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    </svg>
-  </div>
-
   <section id="login-screen">
+    <svg class="login-mascot" viewBox="0 0 100 100"><use href="#icon-cat"/></svg>
     <h1>Дашборд</h1>
     <div class="sub">Войдите, чтобы отметить занятия</div>
-    <div class="panel">
+    <div class="panel" style="position: relative;">
+      <div class="sticker">grammar nazi &amp; proud</div>
       <form id="login-form">
         <label>Имя</label>
         <input id="login-name" type="text" autocomplete="username" required>
@@ -233,9 +53,16 @@
   </section>
 
   <section id="app-screen" class="hidden">
-    <div class="topbar">
-      <div class="who">Вы вошли как <b id="who-name"></b></div>
-      <button class="secondary" id="logout-btn">Выйти</button>
+    <div class="masthead">
+      <svg class="mark" viewBox="0 0 100 100"><use href="#icon-cat"/></svg>
+      <div>
+        <h1>Дашборд</h1>
+        <div class="tag">english department · нагрузка учителей</div>
+      </div>
+      <div class="masthead-right">
+        <span class="who">Вы — <b id="who-name"></b></span>
+        <button class="secondary" id="logout-btn">Выйти</button>
+      </div>
     </div>
 
     <div id="teacher-view" class="hidden">
@@ -260,15 +87,17 @@
       </div>
 
       <h2>Ваши занятия</h2>
-      <div class="panel">
-        <div id="lessons-list" class="loading">Загрузка…</div>
-      </div>
+      <div id="lessons-list" class="loading">Загрузка…</div>
     </div>
 
     <div id="admin-view" class="hidden">
       <h2>Нагрузка по учителям</h2>
-      <div class="panel">
-        <div id="summary-table" class="loading">Загрузка…</div>
+      <div id="admin-stats" class="stat-grid hidden"></div>
+      <div class="panel" style="position: relative; overflow: hidden;">
+        <svg class="corner-duck" viewBox="0 0 100 100"><use href="#icon-duck"/></svg>
+        <div class="table-scroll">
+          <div id="summary-table" class="loading">Загрузка…</div>
+        </div>
       </div>
       <h2>Все занятия</h2>
       <div class="panel">
@@ -276,31 +105,35 @@
         <div id="all-lessons" class="loading">Загрузка…</div>
       </div>
     </div>
-  </section>
 
-  <div class="center-decor" aria-hidden="true">
-    <svg class="mini-icon" viewBox="0 0 120 170">
-      <path d="M92 128 Q128 118 118 76 Q112 55 96 61" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      <path d="M38 158 Q18 158 18 112 Q18 68 55 58 Q92 58 92 100 Q92 142 70 158 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
-      <circle cx="55" cy="42" r="23" fill="none" stroke="currentColor" stroke-width="3"/>
-      <path d="M36 30 Q32 8 52 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      <path d="M74 30 Q78 8 58 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      <path d="M44 41 Q47 37 50 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <path d="M60 41 Q63 37 66 41" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="42" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-      <circle cx="68" cy="48" r="3" fill="currentColor" opacity="0.6"/>
-      <path d="M55 47 Q51 52 46 49 M55 47 Q59 52 64 49" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    </svg>
-    <span class="mini-phrase">you're doing amazing</span>
-    <svg class="mini-icon" viewBox="0 0 100 100">
-      <circle cx="58" cy="62" r="27" fill="none" stroke="currentColor" stroke-width="3"/>
-      <circle cx="35" cy="37" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-      <path d="M21 37 Q9 35 11 43 Q13 47 23 43" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="33" cy="33" r="2.5" fill="currentColor"/>
-      <path d="M53 57 Q59 51 53 45 Q48 51 53 57" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  </div>
+    <footer class="note">teach &amp; shine ✨</footer>
+  </section>
 
 </div>
 
 <script src="app.js"></script>
+<script>
+  (function () {
+    var cursorBlob = document.getElementById('blob-cursor');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canHover = window.matchMedia('(pointer: fine)').matches;
+    if (!cursorBlob || reduceMotion || !canHover) return;
+
+    var HALF = 120; /* половина размера .blob-cursor (240px) */
+    var targetX = window.innerWidth / 2, targetY = window.innerHeight / 2;
+    var x = targetX, y = targetY;
+
+    window.addEventListener('mousemove', function (e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function tick() {
+      x += (targetX - x) * 0.07;
+      y += (targetY - y) * 0.07;
+      cursorBlob.style.transform = 'translate3d(' + (x - HALF) + 'px,' + (y - HALF) + 'px,0)';
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
